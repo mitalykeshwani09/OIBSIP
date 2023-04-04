@@ -1,45 +1,44 @@
 import java.util.Scanner;
-class Game{
+
+class Game {
     int random;
     int guess;
-    public Game(){
-            random = 45;
+    int numGuesses;
+
+    public Game() {
+        random = 45;
+        numGuesses = 0;
     }
-    public void takeInputs(){
+
+    public void takeInputs() {
         System.out.println("Guess the number\n");
         Scanner sc = new Scanner(System.in);
-            guess = sc.nextInt();
-
-        
-
+        guess = sc.nextInt();
+        numGuesses++;
     }
-    public void check(){
-          
-        if(guess>random){
-             System.out.println("Oops!!\n This is an incorrect guess.Choose a smaller number.");
+
+    public void check() {
+        while (numGuesses < 20) {
+            if (guess > random) {
+                System.out.println("Oops!!\nThis is an incorrect guess. Choose a smaller number.");
+            } else if (guess < random) {
+                System.out.println("Oops!!\nThis is an incorrect guess. Choose a greater number.");
+            } else {
+                System.out.println("Congratulations!!\nYou have guessed the correct number.");
+                return;
+            }
+            takeInputs();
         }
-             else if(guess<random){
-                System.out.println("Oops!!\n This is an incorrect guess.Choose a greater number.");
-             }
-             else{
-                System.out.println("Congratulations!!\n You have guessed the correct number.");
-             }
-        
+        System.out.println("Bad luck! You have exceeded 20 guesses. Please try again.");
     }
-    
-    }
+}
 
-
-class Task1{
+class Task1 {
     public static void main(String[] args) {
-        int count = 19;
         Game Mitaly = new Game();
-        for(int i = 0 ; i<=20;i++){
         Mitaly.takeInputs();
         Mitaly.check();
-        System.out.println("You have "+ count +" guesses remaining.");
-        count--;
+
     }
-   
 }
-}
+
